@@ -9,4 +9,6 @@ namespace CashFlow.Domain.Repositories;
 public interface IExpenseWriteOnlyRepository
 {
     Task add( Expense expense );
+
+    Task<bool> delete( long id);
 }

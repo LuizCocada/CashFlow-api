@@ -23,7 +23,7 @@ public class RegisterExpensesUseCase : IRegisterExpenseUseCase
     }
 
 
-    public async Task<ResponseRegisterExpenseJson> Execute( RequestRegisterExpenseJson request )
+    public async Task<ResponseRegisterExpenseJson> Execute( RequestExpenseJson request )
     {
         validate(request);
 
@@ -37,7 +37,7 @@ public class RegisterExpensesUseCase : IRegisterExpenseUseCase
         return responseRegistered;
     }
 
-    private void validate( RequestRegisterExpenseJson request )
+    private void validate( RequestExpenseJson request )
     {
         var validator = new RegisterExpensesValidation();
         var result = validator.Validate(request);

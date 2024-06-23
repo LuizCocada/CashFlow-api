@@ -23,29 +23,11 @@ public class ExceptionFilter : IExceptionFilter
 
     private void HandleProjectException( ExceptionContext context )
     {
-        //ex está pegando a exception(errors) da classe ErrorValidationException;
-        //verifica se o tipo de erro é de validaçao
-        if( context.Exception is ErrorValidationException exceptionValidation )
-        {
-            var errorResponse = new ResponseErrorJson(exceptionValidation.Errors);
+        var cashflowException = (CashFlowException) context.Exception;
+        var errorResponse = new ResponseErrorJson(cashflowException.GetErrors());
 
-            context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
-            context.Result = new BadRequestObjectResult(errorResponse);
-        }
-        else if(context.Exception is NotFoundException exceptionNotFound)
-        {
-            var errorResponse = new ResponseErrorJson(exceptionNotFound.Message);
-
-            context.HttpContext.Response.StatusCode = StatusCodes.Status404NotFound;
-            context.Result = new NotFoundObjectResult(errorResponse);
-        }
-        else //se entrou aqui é por que a exceção é do tipo CashFlowException. Ela é executada se nao achar nenhum bloco IF passando a classe de ERROR;
-        {
-            var errorResponse = new ResponseErrorJson(context.Exception.Message);
-
-            context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
-            context.Result = new BadRequestObjectResult(errorResponse);
-        }
+        context.HttpContext.Response.StatusCode = cashflowException.StatusCode;
+        context.Result = new ObjectResult(errorResponse);
     }
 
     //se as exceções nao for nenhuma de que tenha sido tratada na classe HandleProjectException retorne um error desconhecido;
