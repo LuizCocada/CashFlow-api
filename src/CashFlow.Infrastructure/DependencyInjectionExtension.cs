@@ -23,6 +23,8 @@ public static class DependencyInjectionExtension
     {
         services.AddScoped<IExpenseWriteOnlyRepository , ExpenseRepository>(); //se chamar a interface Write
         services.AddScoped<IExpenseReadOnlyRepository , ExpenseRepository>(); //se chamar a interface read
+        services.AddScoped<IExpenseUpdateOnlyRepository , ExpenseRepository>(); // se chamar a interface de updade
+
         services.AddScoped<IUnitOfWork , UnitOfWork>();
 
     }

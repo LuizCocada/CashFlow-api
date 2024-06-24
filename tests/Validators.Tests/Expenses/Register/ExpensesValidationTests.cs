@@ -1,18 +1,17 @@
-using CashFlow.Application.useCase.Expenses.Register;
+using CashFlow.Application.useCase.Expenses;
 using CashFlow.Communication.Enums;
-using CashFlow.Communication.Requests;
 using CashFlow.Exception;
 using CommonTestUtilities.Requests;
 using FluentAssertions;
 
 namespace Validators.Tests.Expenses.Register;
 
-public class RegisterExpensesValidationTests
+public class ExpensesValidationTests
 {
     [Fact]
     public void Success()
     {
-        var validator = new RegisterExpensesValidation();
+        var validator = new ExpensesValidation();
 
         var request = RequestRegisterExpenseJsonBuilder.build();
 
@@ -24,7 +23,7 @@ public class RegisterExpensesValidationTests
     [Fact]
     public void Error_Title_Empty()
     {
-        var validator = new RegisterExpensesValidation();
+        var validator = new ExpensesValidation();
         var request = RequestRegisterExpenseJsonBuilder.build();
         request.Title = string.Empty;
 
@@ -37,7 +36,7 @@ public class RegisterExpensesValidationTests
     [Fact]
     public void Error_date_future()
     {
-        var validator = new RegisterExpensesValidation();
+        var validator = new ExpensesValidation();
         var request = RequestRegisterExpenseJsonBuilder.build();
 
         request.Date = DateTime.UtcNow.AddDays(1);
@@ -51,7 +50,7 @@ public class RegisterExpensesValidationTests
     [Fact]
     public void Error_PaymentType_invalid()
     {
-        var validator = new RegisterExpensesValidation();
+        var validator = new ExpensesValidation();
         var request = RequestRegisterExpenseJsonBuilder.build();
 
         request.PaymentType = (PaymentType) 700;
@@ -70,7 +69,7 @@ public class RegisterExpensesValidationTests
     [InlineData(-10)]
     public void Error_Amaount_less_than_or_equal_to_zero(decimal amount)
     {
-        var validator = new RegisterExpensesValidation();
+        var validator = new ExpensesValidation();
         var request = RequestRegisterExpenseJsonBuilder.build();
 
         request.Amount = amount;

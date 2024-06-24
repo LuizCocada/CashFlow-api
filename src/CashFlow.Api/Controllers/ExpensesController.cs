@@ -82,9 +82,7 @@ public class ExpensesController: ControllerBase
         [FromServices] IUpdateExpenseUseCase useCase,
         [FromRoute] long id,
         [FromBody] RequestExpenseJson request )
-
     {
-
         await useCase.Execute(id, request);
 
         return NoContent();

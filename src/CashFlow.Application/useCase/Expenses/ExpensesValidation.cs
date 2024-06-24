@@ -3,11 +3,11 @@ using CashFlow.Communication.Requests;
 using CashFlow.Exception;
 using FluentValidation;
 
-namespace CashFlow.Application.useCase.Expenses.Register;
+namespace CashFlow.Application.useCase.Expenses;
 
-public class RegisterExpensesValidation : AbstractValidator<RequestExpenseJson>
+public class ExpensesValidation : AbstractValidator<RequestExpenseJson>
 {
-    public RegisterExpensesValidation()
+    public ExpensesValidation()
     {
         //verifica se nao � nulo. Se for nulo retorna uma mensagem de tratamento.
         RuleFor(expense => expense.Title).NotEmpty().WithMessage(ResourceErrorMessages.TITLE_EMPTY);

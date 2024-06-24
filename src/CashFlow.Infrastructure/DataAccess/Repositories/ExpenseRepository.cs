@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CashFlow.Infrastructure.DataAccess.Repositories;
 
-internal class ExpenseRepository : IExpenseReadOnlyRepository, IExpenseWriteOnlyRepository
+internal class ExpenseRepository : IExpenseReadOnlyRepository, IExpenseWriteOnlyRepository, IExpenseUpdateOnlyRepository
 {
     private readonly CashFlowDbContext _context;
 
@@ -23,10 +23,6 @@ internal class ExpenseRepository : IExpenseReadOnlyRepository, IExpenseWriteOnly
         return await _context.Expenses.AsNoTracking().ToListAsync();// aqui faz o select no banco 
     }
 
-    public async Task<Expense?> GetById( long id )
-    {
-        return await _context.Expenses.AsNoTracking().FirstOrDefaultAsync(expense => expense.Id == id);
-    }
 
     public async Task<bool> delete( long id )
     {
@@ -41,7 +37,22 @@ internal class ExpenseRepository : IExpenseReadOnlyRepository, IExpenseWriteOnly
 
         return true;
     }
+    
+    //responde essa se a funcao de pegar o Id vier do ReadOnly
+    async Task<Expense?>  IExpenseReadOnlyRepository.GetById( long id )
+    {
+        return await _context.Expenses.AsNoTracking().FirstOrDefaultAsync(expense => expense.Id == id);                 //A diferença é que um usa o AsNoTracking() e outro não.
+    }
+
+    //responde essa se a funcao de pegar o Id vier do Update                                                            // AsNoTracking é para melhor desempenho. caso o useCase nao faça alteracoes de valores, usamos ele.
+    async Task<Expense?> IExpenseUpdateOnlyRepository.GetById( long id )
+    {
+        return await _context.Expenses.FirstOrDefaultAsync(expense => expense.Id == id);
+    }
+    
+    public void Update(Expense expense)
+    {
+        _context.Expenses.Update(expense);
+    }
 }
 
-
-// AsNoTracking é para melhor desempenho. caso o useCase nao faça alteracoes de valores, usamos ele.
