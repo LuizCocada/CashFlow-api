@@ -6,4 +6,55 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Reports\NewFile1.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Reports\ResouceReportGenerationMessages.resx" />
+    <EmbeddedResource Remove="Reports\ResouceReportGenerationMessages.fr.resx" />
+    <EmbeddedResource Remove="Reports\ResouceReportGenerationMessages.pt-br.resx" />
+    <EmbeddedResource Remove="Reports\ResouceReportGenerationMessages.pt-pt.resx" />
+    <EmbeddedResource Update="Reports\ResourceReportMessages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceReportMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Reports\ResourceReportMessages.fr.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceReportMessages.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Reports\ResourceReportMessages.pt-BR.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceReportMessages.pt-BR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Reports\ResourceReportMessages.pt-PT.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceReportMessages.pt-PT.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Reports\ResouceReportGenerationMessages.Designer.cs" />
+    <Compile Update="Reports\ResourceReportMessages.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResourceReportMessages.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Reports\ResourceReportMessages.fr.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResourceReportMessages.fr.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Reports\ResourceReportMessages.pt-BR.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResourceReportMessages.pt-BR.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Reports\ResourceReportMessages.pt-PT.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResourceReportMessages.pt-PT.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
 </Project>
