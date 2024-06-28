@@ -1,12 +1,27 @@
-﻿using ClosedXML.Excel;
+﻿using CashFlow.Domain.Enums;
+using ClosedXML.Excel;
 using CashFlow.Domain.Reports;
+using CashFlow.Domain.Repositories;
 
 namespace CashFlow.Application.useCase.Expenses.Reports.Excell;
 
 public class GereneteExpenseReportExcelUseCase : IGereneteExpenseReportExcelUseCase
 {
+    private readonly IExpenseReadOnlyRepository _repository;
+
+    public GereneteExpenseReportExcelUseCase(IExpenseReadOnlyRepository repository)
+    {
+        _repository = repository;
+    }
+    
     public async Task<byte[]> Execute(DateOnly month)
     {
+        var expenses = await _repository.GetByDate(month);
+        if (expenses.Count == 0)
+        {
+            return [];
+        }
+        
         var workBook = new XLWorkbook();
          
         workBook.Author="Luiz Ribeiro";
@@ -17,11 +32,33 @@ public class GereneteExpenseReportExcelUseCase : IGereneteExpenseReportExcelUseC
         
         InsertHeader(worksheet);
 
+        var row = 2;
+        foreach (var expense in expenses)
+        {
+            worksheet.Cell($"A{row}").Value = expense.Title;
+            worksheet.Cell($"B{row}").Value = expense.Date;
+            worksheet.Cell($"C{row}").Value = ConvertPaymentType(expense.PaymentType);
+            worksheet.Cell($"D{row}").Value = expense.Amount;
+            worksheet.Cell($"E{row}").Value = expense.Description;
+            row++;
+        }
+
         var file = new MemoryStream();
         workBook.SaveAs(file);
 
         return file.ToArray();
-
+    }
+    
+    private string ConvertPaymentType(PaymentType payment)
+    {
+        return payment switch
+        {
+            PaymentType.Cash => "Dinheiro",
+            PaymentType.CreditCard => "Cartao de credito",
+            PaymentType.DebidCard => "Cartao de debito",
+            PaymentType.EletronicTransfer => "Transferencia Eletronica",
+            _ => string.Empty
+        };
     }
 
     private void InsertHeader(IXLWorksheet worksheet)

@@ -18,7 +18,6 @@ builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilter)))
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddAplication();
 
-
 var app = builder.Build();
 
 if( app.Environment.IsDevelopment() )
