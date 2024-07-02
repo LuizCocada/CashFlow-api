@@ -8,7 +8,7 @@ namespace CashFlow.Application.useCase.Expenses.Reports.Excell;
 public class GereneteExpenseReportExcelUseCase : IGereneteExpenseReportExcelUseCase
 {
     private readonly IExpenseReadOnlyRepository _repository;
-
+    private readonly string CURRENT_SYMBOL = "€";
     public GereneteExpenseReportExcelUseCase(IExpenseReadOnlyRepository repository)
     {
         _repository = repository;
@@ -22,7 +22,7 @@ public class GereneteExpenseReportExcelUseCase : IGereneteExpenseReportExcelUseC
             return [];
         }
         
-        var workBook = new XLWorkbook();
+        using var workBook = new XLWorkbook();
          
         workBook.Author="Luiz Ribeiro";
         
@@ -38,11 +38,16 @@ public class GereneteExpenseReportExcelUseCase : IGereneteExpenseReportExcelUseC
             worksheet.Cell($"A{row}").Value = expense.Title;
             worksheet.Cell($"B{row}").Value = expense.Date;
             worksheet.Cell($"C{row}").Value = ConvertPaymentType(expense.PaymentType);
+
             worksheet.Cell($"D{row}").Value = expense.Amount;
+            worksheet.Cell($"D{row}").Style.NumberFormat.Format = $"-{CURRENT_SYMBOL} #,##0.00";
+            
             worksheet.Cell($"E{row}").Value = expense.Description;
             row++;
         }
 
+        worksheet.Columns().AdjustToContents();
+        
         var file = new MemoryStream();
         workBook.SaveAs(file);
 
@@ -53,10 +58,10 @@ public class GereneteExpenseReportExcelUseCase : IGereneteExpenseReportExcelUseC
     {
         return payment switch
         {
-            PaymentType.Cash => "Dinheiro",
-            PaymentType.CreditCard => "Cartao de credito",
-            PaymentType.DebidCard => "Cartao de debito",
-            PaymentType.EletronicTransfer => "Transferencia Eletronica",
+            PaymentType.Cash => ResourcePaymentTypeMessages.CASH,
+            PaymentType.CreditCard => ResourcePaymentTypeMessages.CREDITCARD,
+            PaymentType.DebidCard => ResourcePaymentTypeMessages.DEBITCARD,
+            PaymentType.EletronicTransfer => ResourcePaymentTypeMessages.ELETRONICTRANSFER,
             _ => string.Empty
         };
     }
