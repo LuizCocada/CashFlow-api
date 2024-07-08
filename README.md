@@ -19,10 +19,20 @@ Dentre os pacotes NuGet utilizados, o **AutoMapper** é o responsável pelo mape
 
 - **RESTful API com Documentação Swagger**: Interface documentada que facilita a integração e o teste por parte dos desenvolvedores.
 
+### Contruído com 
+
+![.NET Badge](https://img.shields.io/badge/.NET-512BD4?logo=dotnet&logoColor=fff&style=for-the-badge)
+![C# Badge](https://img.shields.io/badge/C%23-512BD4?logo=csharp&logoColor=fff&style=for-the-badge)
+![MySQL Badge](https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=fff&style=flat-square)
+![macOS Badge](https://img.shields.io/badge/macOS-000?logo=macos&logoColor=fff&style=flat-square)
+![Swagger Badge](https://img.shields.io/badge/Swagger-85EA2D?logo=swagger&logoColor=000&style=flat-square)
+![Rider Badge](https://img.shields.io/badge/Rider-000?logo=rider&logoColor=fff&style=flat-square)
+
 ## Getting Started
 
 Para obter uma cópia local funcionando, siga estes passos simples.
 
+### Requisitos
 - Visual Studio Versao 2022 / Visual Studio Code / JetBrains Rider 
 - windows 10+ / Linux/MacOS com [.NET SDK][dot-net-sdk] instalado.
 - MySql Server
@@ -38,5 +48,8 @@ Para obter uma cópia local funcionando, siga estes passos simples.
 3. execute a API.
 
 
+
+
 <!--Links-->
 [Dot-net-sdk]: https://dotnet.microsoft.com/pt-br/download/dotnet/8.0
+
