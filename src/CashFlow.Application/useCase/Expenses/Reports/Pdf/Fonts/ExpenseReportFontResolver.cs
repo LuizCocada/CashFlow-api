@@ -13,7 +13,7 @@ public class ExpenseReportFontResolver : IFontResolver
 
         if (stream is null)
         {
-            stream = ReadFontFile(FontHelper.DEFAULT_FONT);
+            stream = ReadFontFile(FontHelper.DefaultFont);
         }
 
         var lenght = (int)stream!.Length;
@@ -33,6 +33,6 @@ public class ExpenseReportFontResolver : IFontResolver
     private Stream? ReadFontFile(string faceName)
     {
         var assembly = Assembly.GetExecutingAssembly();//retorna a referencia/dll do projeto Application.
-        return assembly.GetManifestResourceStream($"Cashflow.Application.useCase.Expenses.Reports.Pdf.Fonts{faceName}.tff");//retorna uma string podendo ser nula caso nao ache o arquivo da fonte
-    }
+        return assembly.GetManifestResourceStream($"CashFlow.Application.useCase.Expenses.Reports.Pdf.Fonts.{faceName}.ttf");//retorna uma string podendo ser nula caso nao ache o arquivo da fonte
+    }                                                    
 }

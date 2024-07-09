@@ -1,0 +1,5 @@
+1- para efetuar a busca de imagem usando Assembly no useCase de PDF. a imagem, na propriedades precisa da opcao (copy always).
+
+2- para as Fontes baixadas. para tudo ocorrer nos conformes elas precisam da opcao em propriedades (EmbeddedResource).
+
+

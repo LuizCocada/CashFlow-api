@@ -22,6 +22,9 @@
 
   <ItemGroup>
     <None Remove="useCase\Expenses\Reports\Excel" />
+    <None Update="Logo\logo-profile.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +36,10 @@
     <EmbeddedResource Include="useCase\Expenses\Reports\Pdf\Fonts\WorkSans-Black.ttf" />
     <None Remove="useCase\Expenses\Reports\Pdf\Fonts\WorkSans-Regular.ttf" />
     <EmbeddedResource Include="useCase\Expenses\Reports\Pdf\Fonts\WorkSans-Regular.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="useCase\Expenses\Reports\Pdf\Colors\" />
   </ItemGroup>
 
 </Project>

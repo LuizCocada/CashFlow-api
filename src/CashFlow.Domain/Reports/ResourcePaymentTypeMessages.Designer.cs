@@ -36,7 +36,7 @@ namespace CashFlow.Domain.Reports {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static System.Globalization.CultureInfo Culture {
+        public static System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -66,12 +66,6 @@ namespace CashFlow.Domain.Reports {
         public static string ELETRONICTRANSFER {
             get {
                 return ResourceManager.GetString("ELETRONICTRANSFER", resourceCulture);
-            }
-        }
-        
-        public static string EXPENSES_FOR {
-            get {
-                return ResourceManager.GetString("EXPENSES_FOR", resourceCulture);
             }
         }
     }

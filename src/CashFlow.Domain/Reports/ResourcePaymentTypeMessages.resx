@@ -30,7 +30,4 @@
     <data name="ELETRONICTRANSFER" xml:space="preserve">
         <value>Eletronic Transfer</value>
     </data>
-    <data name="EXPENSES_FOR" xml:space="preserve">
-        <value>Expenses for</value>
-    </data>
 </root>
