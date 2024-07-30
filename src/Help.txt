@@ -3,3 +3,22 @@
 2- para as Fontes baixadas. para tudo ocorrer nos conformes elas precisam da opcao em propriedades (EmbeddedResource).
 
 
+3- ------------- TOKENS --------------
+
+  "Settings": {
+    "Jwt": {
+      "SigningKey": "BBP~zXqhQvzPW]4JNt3a4K90e>-@:5)9",
+      "ExpiresMinutes": 1000
+    }
+  }
+  
+"SigningKey": "BBP~zXqhQvzPW]4JNt3a4K90e>-@:5)9" 
+ Aqui precisamos levar em consideração o metodo de seguranca da classe tokengenerator
+ (SecurityAlgorithms.HmacSha256Signature).
+ 
+ O tamanho recomandado para esta chave (HmacSha256Signature) é de 64bits,
+ 1 caractere em C# ocupa 2 bytes,
+ logo, a "SigningKey" deve contar 32bytes.
+ 
+ USE ESTE SITE PARA GERAR SENHAS FORTES => https://1password.com/password-generator/
+

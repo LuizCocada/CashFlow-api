@@ -23,7 +23,7 @@ public class RegisterExpensesUseCase : IRegisterExpenseUseCase
     }
 
 
-    public async Task<ResponseRegisterExpenseJson> Execute( RequestExpenseJson request )
+    public async Task<ResponseRegisteredExpenseJson> Execute( RequestExpenseJson request )
     {
         Validate(request);
 
@@ -32,7 +32,7 @@ public class RegisterExpensesUseCase : IRegisterExpenseUseCase
         await _repository.add(entity);
         await _unitOfWork.commit();
 
-        var responseRegistered = _mapper.Map<ResponseRegisterExpenseJson>(entity);
+        var responseRegistered = _mapper.Map<ResponseRegisteredExpenseJson>(entity);
 
         return responseRegistered;
     }

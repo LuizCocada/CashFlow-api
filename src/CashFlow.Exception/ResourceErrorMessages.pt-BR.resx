@@ -135,4 +135,22 @@
   <data name="UNKNOW_ERROR" xml:space="preserve">
     <value>Error Desconhecido</value>
   </data>
+  <data name="NAME_EMPTY" xml:space="preserve">
+    <value>O nome é necessário</value>
+  </data>
+  <data name="EMAIL_EMPTY" xml:space="preserve">
+    <value>O email é necessário</value>
+  </data>
+  <data name="PASSWORD_INVALID" xml:space="preserve">
+    <value>Sua senha deve ter pelo menos 8 caracteres, incluindo pelo menos uma letra minúscula, uma letra maiúscula, um número e um caractere especial, por exemplo: (!, ?, *, .)</value>
+  </data>
+  <data name="EMAIL_INVALID" xml:space="preserve">
+    <value>Email inválido</value>
+  </data>
+  <data name="EMAIL_ALREADY_REGISTERED" xml:space="preserve">
+    <value>Email já registrado</value>
+  </data>
+  <data name="INVALID_EMAIL_OR_PASSWORD" xml:space="preserve">
+    <value>Email ou senha inválida.</value>
+  </data>
 </root>

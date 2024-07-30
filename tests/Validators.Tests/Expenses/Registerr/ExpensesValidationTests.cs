@@ -4,7 +4,7 @@ using CashFlow.Exception;
 using CommonTestUtilities.Requests;
 using FluentAssertions;
 
-namespace Validators.Tests.Expenses.Register;
+namespace Validators.Tests.Expenses.Registerr;
 
 public class ExpensesValidationTests
 {

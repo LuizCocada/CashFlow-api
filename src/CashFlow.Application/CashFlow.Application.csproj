@@ -42,4 +42,8 @@
     <Folder Include="useCase\Expenses\Reports\Pdf\Colors\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="useCase\Users.cs" />
+  </ItemGroup>
+
 </Project>

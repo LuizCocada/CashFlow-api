@@ -16,13 +16,19 @@ public class AutoMapping : Profile
     private void RequestToEntity()
     {
         CreateMap<RequestExpenseJson , Expense>();
+        CreateMap<RequestRegisterUserJson, User>()
+            .ForMember(destino => destino.Password,
+                config => config.Ignore());
     }
 
     private void EntityResponse()
     {
-        CreateMap<Expense , ResponseRegisterExpenseJson>();
+        CreateMap<Expense , ResponseRegisteredExpenseJson>();
         CreateMap<Expense , ResponseShortExpenseJson>();
         CreateMap<Expense , ResponseExpenseByIdJson>();
     }
 }
 
+//IGNORAR PASSWORD
+//.ForMember(destino => destino.Password,
+// config => config.Ignore());

@@ -5,17 +5,18 @@ using CashFlow.Application.useCase.Expenses.Registered.GetById;
 using CashFlow.Application.useCase.Expenses.Registered.Update;
 using CashFlow.Communication.Requests;
 using CashFlow.Communication.Responses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CashFlow.Api.Controllers;
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]//precisa de um token valido passado em program.cs
 public class ExpensesController: ControllerBase
 {
     [HttpPost]
-    [ProducesResponseType(typeof(ResponseRegisterExpenseJson) , StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ResponseRegisteredExpenseJson) , StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ResponseErrorJson) , StatusCodes.Status400BadRequest)]
-
     public async Task<IActionResult> Register(
         [FromServices] IRegisterExpenseUseCase useCase ,
         [FromBody] RequestExpenseJson request )

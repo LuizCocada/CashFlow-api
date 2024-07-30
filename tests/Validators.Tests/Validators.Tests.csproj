@@ -27,4 +27,17 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="Expenses\Register\**" />
+    <Compile Remove="Users\Users.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Expenses\Register\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Expenses\Register\**" />
+  </ItemGroup>
+
 </Project>
